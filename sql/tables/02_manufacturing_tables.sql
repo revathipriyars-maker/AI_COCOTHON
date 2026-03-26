@@ -1,0 +1,45 @@
+-- SQL DDL for COA, VENDOR, CUSTOMER, JOBS, and INVOICE tables
+
+-- COA Table
+CREATE TABLE COA (
+    id INT PRIMARY KEY,
+    account_name VARCHAR(100) NOT NULL,
+    account_type VARCHAR(50) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- VENDOR Table
+CREATE TABLE VENDOR (
+    id INT PRIMARY KEY,
+    vendor_name VARCHAR(100) NOT NULL,
+    contact_info VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- CUSTOMER Table
+CREATE TABLE CUSTOMER (
+    id INT PRIMARY KEY,
+    customer_name VARCHAR(100) NOT NULL,
+    address VARCHAR(255),
+    phone VARCHAR(15),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- JOBS Table
+CREATE TABLE JOBS (
+    id INT PRIMARY KEY,
+    job_description VARCHAR(255) NOT NULL,
+    customer_id INT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (customer_id) REFERENCES CUSTOMER(id)
+);
+
+-- INVOICE Table
+CREATE TABLE INVOICE (
+    id INT PRIMARY KEY,
+    invoice_number VARCHAR(50) NOT NULL,
+    job_id INT,
+    amount DECIMAL(10, 2) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (job_id) REFERENCES JOBS(id)
+);
