@@ -1,0 +1,16 @@
+.env
+*.local
+*.pem
+*.key
+secrets/
+credentials/
+private/
+*.iml
+*.ipr
+*.iws
+*.DS_Store
+*.db
+*.sql~
+*.sql.gz
+*.sql.xz
+*.sql.lz4
